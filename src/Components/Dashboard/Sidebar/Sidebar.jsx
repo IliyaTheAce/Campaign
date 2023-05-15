@@ -17,7 +17,7 @@ const Sidebar = () => {
             <aside id="default-sidebar"
                    className={`fixed top-0 right-0 z-40 w-64 h-screen transition-transform translate-x-full sm:translate-x-0 ${openSideBar ? "translate-x-0" : ""}`}
                    aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div className={"h-full px-3 py-4 overflow-y-auto bg-secondary"}>
                     <div className={'text-left'}>
                     <button type="button"
                             onClick={() => setOpenSideBar(!openSideBar)}

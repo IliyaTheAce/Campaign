@@ -13,7 +13,7 @@ const Login = () => {
 
         if (await auth(usernameInput.current.value, passwordInput.current.value)) {
             setIsFetchingData(false);
-            nav('./dashboard')
+            nav('../dashboard')
         }else{
             setIsFetchingData(false);
             setHasError(true);
@@ -80,7 +80,7 @@ const Login = () => {
                                 type="button"
                                 onClick={LoginFetch}
                                 disabled={isFetchingData}
-                                className={'flex mt-12 w-full justify-center items-center bg-secondary rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'}
+                                className={'flex mt-12 w-full justify-center items-center bg-secondary rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all'}
                             >
                                 ورود {isFetchingData ? <><div className={'animate-spin w-[20px] h-[20px] border-[2px] border-solid border-white rounded-full border-b-0 border-t-0 mr-2'} ></div> </> : ""}
                             </button>
