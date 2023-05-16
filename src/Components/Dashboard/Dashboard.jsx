@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
 import ReportView from "./Views/ReportView";
 import CampaignsView from "./Campaigns/CampaignsView";
+import VideoView from "./Videos/VideoView";
 
 const Dashboard = () => {
     return (
@@ -13,7 +14,7 @@ const Dashboard = () => {
                 <Routes>
                     <Route path={'/'} element={<h1>dashboard</h1>} />
                     <Route path={'/campaigns'} element={<CampaignsView />} />
-                    <Route path={'/create-campaign'} element={<h1>create campaign</h1>} />
+                    <Route path={'/videos'} element={<VideoView />} />
                     <Route path={'/account'} element={<h1>account</h1>} />
                     <Route path={'/*'} element={<h1>404 no page found!</h1>}></Route>
                 </Routes>

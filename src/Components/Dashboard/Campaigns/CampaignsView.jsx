@@ -61,7 +61,11 @@ const CampaignsView = () => {
         FetchingData();
     }, []);
 
-
+    const [filteredData,setFilteredData] = useState(campaignsData)
+    const FilterSearch = (e) => {
+        const  filter =tableTempContent.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
+        setFilteredData(filter)
+    }
     return (
         <div className="py-2 flex flex-wrap w-full h-full">
             <div className="px-2 w-full h-full">
@@ -79,6 +83,12 @@ const CampaignsView = () => {
                             کمپین ها
                         </h4>
                         </div>
+                        <input
+                            type="text"
+                            className="relative m-0 block w-1/6 min-w-0 rounded border border-solid border-neutral-500 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                            onChange={FilterSearch}
+                            id="search"
+                            placeholder="جستجو"/>
                         <div>
                         <button
                             type="button"
@@ -105,7 +115,7 @@ const CampaignsView = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {tableTempContent.map((item) => (
+                        {filteredData.map((item) => (
                             <CampaignsTableCol key={item.id} num={item.num} title={item.title} start={item.start} budget={item.budget} status={item.status} />
                         ))}
                         </tbody>
