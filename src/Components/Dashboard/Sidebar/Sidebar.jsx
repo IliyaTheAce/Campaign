@@ -30,7 +30,8 @@ const Sidebar = () => {
                     <ul className="space-y-2 font-medium mt-3">
                         <SidebarLinks link={'./'} linkName={'داشبورد'} iconName={'dashboard'} />
                         <SidebarLinks link={'./campaigns'} linkName={'کمپین ها'} iconName={'campaign'} />
-                        <SidebarLinks link={'./create-campaign'} linkName={'ایجاد کمپین'} iconName={'add'} />
+                        <SidebarLinks link={'./videos'} linkName={'ویدئو ها'} iconName={'video_library'} />
+                        <SidebarLinks link={'./players'} linkName={'پخش کننده ها'} iconName={'podcasts'} />
                     </ul>
 
                     <NavLink

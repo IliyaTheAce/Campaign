@@ -17,7 +17,7 @@ import {ResponsivePie} from "@nivo/pie";
          }
      ];
     return (
-        <div className={''}>
+        <>
             <div className={'flex flex-row'}>
             <div className="my-4 flex flex-wrap w-1/3">
                 <div className="px-4 w-full">
@@ -103,7 +103,7 @@ import {ResponsivePie} from "@nivo/pie";
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
