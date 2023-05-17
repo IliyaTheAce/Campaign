@@ -1,18 +1,35 @@
 import React from 'react';
 import {ResponsivePie} from "@nivo/pie";
+import {useParams} from "react-router-dom";
 
  const ReportView = () => {
+     const tempData = {
+         view: 205,
+         usedBudget:800000,
+         availableBudget:1200000,
+         events:[
+             {
+             name:'نام رویداد تستی',
+             description: 'توضیحاتی درباره رویداد'
+             },{
+             name:'نام رویداد تستی',
+             description: 'توضیحاتی درباره رویداد'
+             },
+             ]
+     }
+     const campId = useParams().campId;
+     console.log(campId)
      const chartData = [
          {
              id: "مصرف شده",
              label: "Consumed",
-             value: 200000,
+             value: tempData.usedBudget,
              color: "hsla(205,87%,22%,0.89)"
          },
          {
              id: "موجود",
              label: "Available",
-             value: 1000000,
+             value: tempData.availableBudget,
              color: "hsl(107,70%,50%)"
          }
      ];
@@ -35,7 +52,7 @@ import {ResponsivePie} from "@nivo/pie";
                         </h4>
                         </div>
                         <p className="text-2xl">
-کمپین ها امروز به تعداد 185 بار دیده شده
+کمپین امروز به تعداد {tempData.view} بار دیده شده
                         </p>
                     </div>
                 </div>
@@ -57,9 +74,9 @@ import {ResponsivePie} from "@nivo/pie";
                         </div>
                         <div className={'flex'}>
                         <p className="flex text-2xl leading-10 items-center">
-                            200000 تومان از بودجه مصرف شده
+                            {tempData.usedBudget} تومان از بودجه مصرف شده
                             <br/>
-                            1000000 تومان از بودجه باقی مانده
+                            {tempData.availableBudget} تومان از بودجه باقی مانده
                         </p>
                             <div className={'w-[400px] h-[200px] text-black mr-10'}>
                             <ResponsivePie
@@ -82,8 +99,8 @@ import {ResponsivePie} from "@nivo/pie";
                 </div>
             </div>
             </div>
-            <div className="my-4 flex flex-wrap w-full h-[400px]">
-                <div className="px-4 w-full h-full">
+            <div className="my-4 flex flex-wrap w-full min-h-[400px]">
+                <div className="px-4 w-full min-h-full">
                     <div
                         className="mb-8 rounded-[20px] bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 h-full"
                     >
@@ -97,9 +114,15 @@ import {ResponsivePie} from "@nivo/pie";
 رویداد ها
                             </h4>
                         </div>
-                        <p className="text-2xl">
-                            رویدادی برای امروز ثبت نشده!
-                        </p>
+                        {tempData.events.map((event) => (
+                            <div className={'mb-4'}>
+                                <h2 className={'text-2xl mb-2'}>{event.name}</h2>
+                                <p className="text-l mr-3">
+                                    {event.description}
+                                </p>
+                            </div>
+                        ))}
+
                     </div>
                 </div>
             </div>

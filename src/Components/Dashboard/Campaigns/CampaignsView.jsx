@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import CampaignsTableCol from "./campaignsTableCol";
 import axios from "axios";
 import campaignsTableCol from "./campaignsTableCol";
+import {Link} from "react-router-dom";
+import {Input ,Button} from "@material-tailwind/react";
 
 
 const tableTempContent = [
@@ -83,24 +85,24 @@ const CampaignsView = () => {
                             کمپین ها
                         </h4>
                         </div>
-                        <input
-                            type="text"
-                            className="relative m-0 block w-1/6 min-w-0 rounded border border-solid border-neutral-500 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                        <div className="w-1/5">
+                        <Input
                             onChange={FilterSearch}
-                            id="search"
-                            placeholder="جستجو"/>
+                            variant={'standard'}
+                            className={'text-white'} color={'blue'}
+                            label={'جستجو'}/>
+                        </div>
                         <div>
-                        <button
-                            type="button"
+                        <Button
                             onClick={FetchingData}
-                            className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+                            className="font-Homa inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
                             بازخوانی
-                        </button>
-                        <button
-                            type="button"
+                        </Button>
+                        <Link
+                            to={'/dashboard/create-campaign'}
                             className="mr-2 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
                             اینجاد کمپین جدید
-                        </button>
+                        </Link>
                         </div>
                     </div>
                     <table className="min-w-full text-right text-sm font-light">
@@ -116,7 +118,7 @@ const CampaignsView = () => {
                         </thead>
                         <tbody>
                         {filteredData.map((item) => (
-                            <CampaignsTableCol key={item.id} num={item.num} title={item.title} start={item.start} budget={item.budget} status={item.status} />
+                            <CampaignsTableCol key={item.id} id={item.id} num={item.num} title={item.title} start={item.start} budget={item.budget} status={item.status} />
                         ))}
                         </tbody>
                     </table>

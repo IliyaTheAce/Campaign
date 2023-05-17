@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: B Homa;
+    src: url("http://font.limil.org/homa.min.css");
+}
+
 body {
     font-family: "B Homa", sans-serif;
 }
