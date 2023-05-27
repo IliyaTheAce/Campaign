@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import VideoTableCol from "./VideoTableCol";
 import {Input , Button} from "@material-tailwind/react";
+import MessageModal from "../Modals/MessageModal";
+import {MessagesContext} from "../../../App";
 
 const tableTempContent = [
     {
@@ -43,6 +45,7 @@ const FilterSearch = (e) => {
     const  filter =tableTempContent.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
     setFilteredData(filter)
 }
+    const context = useContext(MessagesContext);
     return (
         <div className="py-2 flex flex-wrap w-full h-full">
             <div className="px-2 w-full h-full">
