@@ -33,7 +33,7 @@ const NewReport = () => {
 		}
 	];
 	return (
-	 <section className={'flex flex-col md:flex-wrap lg:flex-row gap-5'}>
+	 <section className={'flex flex-col md:flex-wrap lg:flex-row gap-5 pt-2'}>
 		 <div
 		  className="flex-grow rounded-[20px] place-self-stretch bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 "
 		 >

@@ -1,15 +1,13 @@
 import Login from "./Components/Auth/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import {Route, Router, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import NotFoundPage from "./Components/404";
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useState} from "react";
 import MessageModal from "./Components/Dashboard/Modals/MessageModal";
 
 
 const MessagesContext = createContext();
 const App = () => {
-    
-    
     const [messages, setMessages] = useState([]);
     const NewMessage =({title,message,error}) => {
         const newErrors = [...messages];
@@ -32,6 +30,7 @@ const App = () => {
            ))}
        </div>
         <Routes>
+            <Route path={"/"} exact element={<Navigate to={'/dashboard'} />} />
             <Route path={'/dashboard/*'} element={<Dashboard />} />
             <Route path={'/login'} element={<Login />} />
             <Route path={'/*'} element={<NotFoundPage />} />

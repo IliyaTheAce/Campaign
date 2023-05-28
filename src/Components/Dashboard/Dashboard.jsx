@@ -17,10 +17,7 @@ const Dashboard = () => {
             <div className="p-4 lg:mr-64 lg:mt-0 h-full mt-12">
                 <Routes>
                     <Route path={'/'} element={
-                        <div className={'text-3xl h-full w-full items-center justify-center flex flex-col'}>
-                            <h1 className={'text-5xl mb-5'}>404 صفحه مورد نظر یافت نشد.</h1>
-                            <p>آدرس وارد شده صحیح نیست!</p>
-                        </div>
+                        <NotFoundPage />
                     } />
                     <Route path={'/campaigns'} element={<CampaignsView />} exact/>
                     <Route path={'/campaigns/:campId'} element={<NewReportView />} />
