@@ -39,6 +39,70 @@ const tableTempContent = [
         status: 'غیز فعال',
         id: '2903j1oifh'
     },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
+    {
+        num: '4',
+        title: 'کمپین تست 4',
+        start: '1401/12/6',
+        budget: '800000 تومان',
+        status: 'غیز فعال',
+        id: '2903j1oifh'
+    },
 ]
 
 const CampaignsView = () => {
@@ -70,12 +134,12 @@ const CampaignsView = () => {
     }
     return (
         <div className="py-2 flex flex-wrap w-full h-full">
-            <div className="px-2 w-full h-full">
+            <div className="px-2 w-full min-h-full">
                 <div
-                    className="mb-8 rounded-[20px] bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 h-full"
+                    className="mb-8 rounded-[20px] bg-secondary p-4 lg:p-10 shadow-md md:px-7 xl:px-10 h-full "
                 >
-                    <div className={'inline-flex items-center mb-8 w-full justify-between'}>
-                        <div className={'inline-flex items-center'}>
+                    <div className={'flex flex-col lg:flex-row gap-5 items-center mb-8 w-full justify-between'}>
+                        <div className={'inline-flex lg:flex-grow-0 flex-grow items-center justify-start'}>
                         <div
                             className=" flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"
                         >
@@ -85,7 +149,7 @@ const CampaignsView = () => {
                             کمپین ها
                         </h4>
                         </div>
-                        <div className="w-1/5">
+                        <div className="lg:w-1/5">
                         <Input
                             onChange={FilterSearch}
                             variant={'standard'}
@@ -105,7 +169,8 @@ const CampaignsView = () => {
                         </Link>
                         </div>
                     </div>
-                    <table className="min-w-full text-right text-sm font-light">
+                    <div className={'lg:overflow-auto overflow-scroll'}>
+                    <table className="min-w-full text-right text-sm font-light ">
                         <thead className="border-b font-medium">
                         <tr>
                             <th scope="col" className="px-6 py-4">#</th>
@@ -122,6 +187,7 @@ const CampaignsView = () => {
                         ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

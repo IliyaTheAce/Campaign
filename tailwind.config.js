@@ -11,7 +11,7 @@ module.exports = withMT({
       },
       fontFamily: {
         Homa: ["B Homa", "sans-serif"],
-      }
+      },
     },
   },
   plugins: [

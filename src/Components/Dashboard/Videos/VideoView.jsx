@@ -37,6 +37,94 @@ const tableTempContent = [
         id: '2903j1oifh',
         videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
     },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    },
+    {
+        num: '4',
+        title: 'ویدیو تست 4',
+        time: '0:45',
+        aspect: '1920 * 1080',
+        id: '2903j1oifh',
+        videoLink:'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
+    }
 ]
 
 const VideoView = () => {
@@ -48,11 +136,11 @@ const FilterSearch = (e) => {
     const context = useContext(MessagesContext);
     return (
         <div className="py-2 flex flex-wrap w-full h-full">
-            <div className="px-2 w-full h-full">
+            <div className="px-2 w-full min-h-full">
                 <div
-                    className="mb-8 rounded-[20px] bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 h-full"
+                    className="mb-8 rounded-[20px] bg-secondary p-10 shadow-md md:px-7 xl:px-10 h-full"
                 >
-                    <div className={'inline-flex items-center mb-8 w-full justify-between'}>
+                    <div className={'flex flex-col lg:flex-row gap-5 items-center mb-8 w-full justify-between'}>
                         <div className={'inline-flex items-center'}>
                             <div
                                 className=" flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"
@@ -63,7 +151,7 @@ const FilterSearch = (e) => {
                                 ویدئو ها
                             </h4>
                         </div>
-                        <div className="w-1/5">
+                        <div className="lg:w-1/5">
                             <Input
                                 onChange={FilterSearch}
                                 variant={'standard'}
@@ -75,6 +163,7 @@ const FilterSearch = (e) => {
                                 بازخوانی
                             </Button>
                     </div>
+                    <div className={'lg:overflow-auto overflow-scroll'}>
                     <table className="min-w-full text-right text-sm font-light">
                         <thead className="border-b font-medium">
                         <tr>
@@ -91,6 +180,7 @@ const FilterSearch = (e) => {
                         )) : ''}
                         </tbody>
                     </table>
+                </div>
                 </div>
             </div>
         </div>

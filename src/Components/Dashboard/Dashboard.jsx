@@ -7,13 +7,14 @@ import VideoView from "./Videos/VideoView";
 import CreateCampaign from "./Campaigns/CreateCampaign";
 import AccountEditing from "./Account/AccountEditing";
 import NotFoundPage from "../404";
+import NewReportView from "./Views/NewReportView";
 
 const Dashboard = () => {
     return (
         <section className={'h-full'}>
             <Sidebar/>
 
-            <div className="p-4 sm:mr-64 h-full">
+            <div className="p-4 lg:mr-64 lg:mt-0 h-full mt-12">
                 <Routes>
                     <Route path={'/'} element={
                         <div className={'text-3xl h-full w-full items-center justify-center flex flex-col'}>
@@ -22,7 +23,7 @@ const Dashboard = () => {
                         </div>
                     } />
                     <Route path={'/campaigns'} element={<CampaignsView />} exact/>
-                    <Route path={'/campaigns/:campId'} element={<ReportView />} />
+                    <Route path={'/campaigns/:campId'} element={<NewReportView />} />
                     <Route path={'/create-campaign'} element={<CreateCampaign />} />
                     <Route path={'/videos'} element={<VideoView />} />
                     <Route path={'/account'} element={<AccountEditing />} />
