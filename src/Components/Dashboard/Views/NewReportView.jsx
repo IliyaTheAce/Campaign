@@ -1,3 +1,5 @@
+// noinspection JSValidateTypes
+
 import React from 'react';
 import {useParams} from "react-router-dom";
 import {ResponsivePie} from "@nivo/pie";
@@ -5,14 +7,14 @@ import {ResponsivePie} from "@nivo/pie";
 const NewReport = () => {
 	const tempData = {
 		view: 205,
-		usedBudget:800000,
-		availableBudget:1200000,
-		events:[
+		usedBudget: 800000,
+		availableBudget: 1200000,
+		events: [
 			{
-				name:'نام رویداد تستی',
+				name: 'نام رویداد تستی',
 				description: 'توضیحاتی درباره رویداد'
-			},{
-				name:'نام رویداد تستی',
+			}, {
+				name: 'نام رویداد تستی',
 				description: 'توضیحاتی درباره رویداد'
 			},
 		]
@@ -75,10 +77,10 @@ const NewReport = () => {
 					  data={chartData}
 					  height={'200'}
 					  width={'300'}
-					  margin={{ top: 10, right: 20, bottom: 10, left: 20 }}
+					  margin={{top: 10, right: 20, bottom: 10, left: 20}}
 					  innerRadius={0.7}
 					  padAngle={2}
-					  colors={{ scheme: 'set2' }}
+					  colors={{scheme: 'set2'}}
 					  cornerRadius={5}
 					  activeOuterRadiusOffset={8}
 					  enableArcLinkLabels={false}
@@ -100,7 +102,7 @@ const NewReport = () => {
 					 رویداد ها
 				 </h4>
 			 </div>
-			 {tempData.events.map((event,index) => (
+			 {tempData.events.map((event, index) => (
 			  <div key={index} className={'mb-4'}>
 				  <h2 className={'text-lg md:text-2xl mb-2'}>{event.name}</h2>
 				  <p className="text-sm md:text-l mr-3">

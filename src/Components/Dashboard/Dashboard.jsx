@@ -10,26 +10,26 @@ import NotFoundPage from "../404";
 import NewReportView from "./Views/NewReportView";
 
 const Dashboard = () => {
-    return (
-        <section className={'h-full'}>
-            <Sidebar/>
-
-            <div className="p-4 lg:mr-64 lg:mt-0 h-full mt-12">
-                <Routes>
-                    <Route path={'/'} element={
-                        <NotFoundPage />
-                    } />
-                    <Route path={'/campaigns'} element={<CampaignsView />} exact/>
-                    <Route path={'/campaigns/:campId'} element={<NewReportView />} />
-                    <Route path={'/create-campaign'} element={<CreateCampaign />} />
-                    <Route path={'/videos'} element={<VideoView />} />
-                    <Route path={'/account'} element={<AccountEditing />} />
-                    <Route path={'/*'} element={<NotFoundPage />}></Route>
-                </Routes>
-            </div>
-
-        </section>
-    );
+	return (
+	 <section className={'h-full'}>
+		 <Sidebar/>
+		 
+		 <div className="mt-12 h-full p-4 lg:mt-0 lg:mr-64">
+			 <Routes>
+				 <Route path={'/'} element={
+					 <NotFoundPage/>
+				 }/>
+				 <Route path={'/campaigns'} element={<CampaignsView/>} exact/>
+				 <Route path={'/campaigns/:campId'} element={<NewReportView/>}/>
+				 <Route path={'/create-campaign'} element={<CreateCampaign/>}/>
+				 <Route path={'/videos'} element={<VideoView/>}/>
+				 <Route path={'/account'} element={<AccountEditing/>}/>
+				 <Route path={'/*'} element={<NotFoundPage/>}></Route>
+			 </Routes>
+		 </div>
+	 
+	 </section>
+	);
 };
 
 export default Dashboard;
