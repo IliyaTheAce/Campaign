@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from "axios";
-import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Button} from "@material-tailwind/react";
 
 const CampaignsTableCol = (props) => {

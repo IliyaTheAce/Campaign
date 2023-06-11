@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import SidebarLinks from "./SidebarLinks";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Sidebar = () => {
 	const [openSideBar, setOpenSideBar] = useState(false);

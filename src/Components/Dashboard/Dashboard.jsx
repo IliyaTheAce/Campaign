@@ -1,7 +1,6 @@
 import React from 'react';
 import Sidebar from "./Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
-import ReportView from "./Views/ReportView";
 import CampaignsView from "./Campaigns/CampaignsView";
 import VideoView from "./Videos/VideoView";
 import CreateCampaign from "./Campaigns/CreateCampaign";
