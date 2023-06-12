@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toast} from "react-toastify";
 // import {Toast} from "react-toastify/dist/components";
 
 async function GetList() {
@@ -10,7 +11,7 @@ async function GetList() {
 		}
 	}).catch(error => {
 		console.log(error.message)
-		// Toast.error(error.message);
+		toast.error('پاسخی از سرور دریافت نشد' , {rtl: true})
 		return false;
 	})
 }

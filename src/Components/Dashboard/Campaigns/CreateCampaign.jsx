@@ -1,6 +1,8 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 import {Button, Input} from "@material-tailwind/react";
+import { DatePicker } from "zaman";
+
 
 const CreateCampaign = () => {
 	const nav = useNavigate();
@@ -13,7 +15,7 @@ const CreateCampaign = () => {
 				 <div className={'flex flex-col sm:flex-row items-center mb-8 w-full justify-between gap-5'}>
 					 <div className={'inline-flex items-center'}>
 						 <div
-						  className=" flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"
+						  className="flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"
 						 >
 							 <span className={'material-symbols-outlined'}>campaign</span>
 						 </div>
@@ -38,6 +40,9 @@ const CreateCampaign = () => {
 					 <div className={'sm:w-[350px] w-full'}>
 						 <Input type={'number'} className={'text-white'} color={'blue'} variant={'standard'}
 						        label="مصرف روزانه"/>
+					 </div>
+					 <div className={'sm:w-[350px] w-full flex justify-center items-center border-b-2  border-gray-500'}>
+						 <DatePicker round={'x2'} inputClass={'bg-secondary text-grey-500 w-full focus:border-0 focus:outline-0'} inputAttributes={{placeholder: "تاریخ شروع", color:'#1a2439'}} accentColor="#1a2439" />
 					 </div>
 				 </section>
 				 <Button

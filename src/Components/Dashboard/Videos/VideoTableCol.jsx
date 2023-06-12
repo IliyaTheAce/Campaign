@@ -7,8 +7,9 @@ const VideoTableCol = (props) => {
         <tr className="border-b">
             <td className="whitespace-nowrap px-6 py-4 font-medium">{props.num}</td>
             <td className="whitespace-nowrap px-6 py-4">{props.title}</td>
-            <td className="whitespace-nowrap px-6 py-4">{props.time}</td>
+            {/*<td className="whitespace-nowrap px-6 py-4">{props.time}</td>*/}
             <td className="whitespace-nowrap px-6 py-4">{props.aspect}</td>
+            <td className="whitespace-nowrap px-6 py-4">{props.status}</td>
             <td className="whitespace-nowrap px-6 py-4">
                 <Button
                     onClick={() => setShowModal(true)}

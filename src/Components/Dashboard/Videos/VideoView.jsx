@@ -1,51 +1,43 @@
-import React, {useContext, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import VideoTableCol from "./VideoTableCol";
 import {Button, Input} from "@material-tailwind/react";
-import {toast} from "react-toastify";
-
-const tableTempContent = [
-	{
-		num: '1',
-		title: 'ویدیو تست',
-		time: '0:25',
-		aspect: '1920 * 1080',
-		id: '2903j134oifh',
-		videoLink: 'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
-	},
-	{
-		num: '2',
-		title: 'ویدیو تست 2',
-		time: '0:19',
-		aspect: '1920 * 1080',
-		id: '2903j111oifh',
-		videoLink: 'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
-	},
-	{
-		num: '3',
-		title: 'ویدیو تست 3',
-		time: '0:30',
-		aspect: '1920 * 1080',
-		id: '2903j1oیifh',
-		videoLink: 'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
-	},
-	{
-		num: '4',
-		title: 'ویدیو تست 4',
-		time: '0:45',
-		aspect: '1920 * 1080',
-		id: '2903j1oifh',
-		videoLink: 'https://tecdn.b-cdn.net/img/video/Sail-Away.mp4'
-	}
-]
+import GetList from "../../../Controller/Administrator/Videos/List";
+import Load from "../../Common/Load";
 
 const VideoView = () => {
-	const [filteredData, setFilteredData] = useState(tableTempContent)
+	//TODO: Arrange Table
+	const [filteredData, setFilteredData] = useState([])
+	const [data, setData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const temp = [{
+		num :'ipafjpiasjf'
+	},{
+		num :'oajfopjsg'
+	},]
 	const FilterSearch = (e) => {
-		const filter = tableTempContent.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
+		const filter = data.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
 		setFilteredData(filter)
 	}
+	const FetchData = async () => {
+		setIsLoading(true)
+		const res = await GetList();
+		if (res && res !== false) {
+			setData(res);
+			setFilteredData(res);
+		}
+		setData(temp);
+		setFilteredData(temp);
+		setIsLoading(false)
+	}
+	
+	useEffect(() => {
+		FetchData();
+	}, [null]);
+	
+	
 	return (
 	 <div className="py-2 flex flex-wrap w-full h-full">
+		 <Load isLoading={isLoading}/>
 		 <div className="px-2 w-full min-h-full">
 			 <div
 			  className="mb-8 rounded-[20px] bg-secondary p-10 shadow-md md:px-7 xl:px-10 h-full"
@@ -69,7 +61,9 @@ const VideoView = () => {
 						  label={'جستجو'}/>
 					 </div>
 					 <Button
-					  className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+					  className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+					 onClick={FetchData}
+					 >
 						 بازخوانی
 					 </Button>
 				 </div>
@@ -79,15 +73,17 @@ const VideoView = () => {
 						 <tr>
 							 <th scope="col" className="px-6 py-4">#</th>
 							 <th scope="col" className="px-6 py-4">عنوان</th>
-							 <th scope="col" className="px-6 py-4">زمان</th>
-							 <th scope="col" className="px-6 py-4">ابعاد</th>
+							 {/*<th scope="col" className="px-6 py-4">زمان</th>*/}
+							 <th scope="col" className="px-6 py-4">وضعیت</th>
+							 <th scope="col" className="px-6 py-4">تایپ</th>
 							 <th scope="col" className="px-6 py-4 w-1/6">عملیات</th>
 						 </tr>
 						 </thead>
 						 <tbody>
-						 {filteredData ? filteredData.map((item) => (
-						  <VideoTableCol key={item.id} num={item.num} title={item.title} time={item.time}
-						                 aspect={item.aspect} videoLink={item.videoLink}/>
+						 {filteredData ? filteredData.map((item, index) => (
+						  <VideoTableCol key={item.uid} id={item.uid} num={index + 1} title={item.title} time={item.createdAt}
+						                 aspect={item.type} videoLink={item.videoLink} status={item.is_enabled === 1 ? 'فعال' : "غیر فعال"}
+						  />
 						 )) : ''}
 						 </tbody>
 					 </table>

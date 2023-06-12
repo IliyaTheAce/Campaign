@@ -17,8 +17,10 @@ const CampaignsTableCol = (props) => {
          <td className="whitespace-nowrap px-6 py-4 font-medium">{props.num}</td>
          <td className="whitespace-nowrap px-6 py-4">{props.title}</td>
          <td className="whitespace-nowrap px-6 py-4">{props.start}</td>
-         <td className="whitespace-nowrap px-6 py-4">{props.budget}</td>
-         <td className="whitespace-nowrap px-6 py-4">{props.status}</td>
+         <td className="whitespace-nowrap px-6 py-4">{props.category.name}</td>
+         {/*<td className="whitespace-nowrap px-6 py-4">{props.budget}</td>*/}
+         <td className="whitespace-nowrap px-6 py-4">{props.type}</td>
+         <td className="whitespace-nowrap px-6 py-4">{props.status === 1 ? "فعال" : "غیر فعال"}</td>
          <td className="whitespace-nowrap px-6 py-4">
              <Button
               onClick={() => nav('/dashboard/campaigns/' + props.id)}

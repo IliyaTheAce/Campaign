@@ -6,7 +6,7 @@ import VideoView from "./Videos/VideoView";
 import CreateCampaign from "./Campaigns/CreateCampaign";
 import AccountEditing from "./Account/AccountEditing";
 import NotFoundPage from "../404";
-import NewReportView from "./Views/NewReportView";
+import ReportView from "./Views/ReportView";
 
 const Dashboard = () => {
 	return (
@@ -19,7 +19,7 @@ const Dashboard = () => {
 					 <NotFoundPage/>
 				 }/>
 				 <Route path={'/campaigns'} element={<CampaignsView/>} exact/>
-				 <Route path={'/campaigns/:campId'} element={<NewReportView/>}/>
+				 <Route path={'/campaigns/:campId'} element={<ReportView/>}/>
 				 <Route path={'/create-campaign'} element={<CreateCampaign/>}/>
 				 <Route path={'/videos'} element={<VideoView/>}/>
 				 <Route path={'/account'} element={<AccountEditing/>}/>

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactLoading from "react-loading";
 
-function Load(props) {
-	return (
-	 <div className={'fixed top-1/2 right-1/2 -translate-x-1/2 -translate-y-1/2'}>
-		 <ReactLoading type={'bars'} color={'grey'} />
+function Load({isLoading}) {
+	if(isLoading) return (
+	 <div className={'fixed top-0 h-full left-0 w-full bg-gray-800 bg-opacity-30 flex justify-center items-center z-50'}>
+		 <ReactLoading type={'bars'} color={'grey'}/>
 	 </div>
 	);
 }

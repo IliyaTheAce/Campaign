@@ -1,21 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import CampaignsTableCol from "./campaignsTableCol";
 import {Link} from "react-router-dom";
-import {Input, Button} from "@material-tailwind/react";
+import {Button, Input} from "@material-tailwind/react";
 import GetList from "../../../Controller/Administrator/Campaigns/List";
 import Load from "../../Common/Load";
-import { toast } from 'react-toastify';
 
 const CampaignsView = () => {
 	const [campaignsData, setCampaignsData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [filteredData, setFilteredData] = useState(campaignsData)
 	const FetchingData = async () => {
 		setIsLoading(true)
 		const data = await GetList()
 		if (data && data !== false) {
 			setCampaignsData(data)
-		} else{
-			toast.error('پاسخی از سرور دریافت نشد' , {rtl: true})
+			setFilteredData(data)
 		}
 		setIsLoading(false)
 	}
@@ -24,14 +23,13 @@ const CampaignsView = () => {
 		FetchingData();
 	}, []);
 	
-	const [filteredData, setFilteredData] = useState(campaignsData)
 	const FilterSearch = (e) => {
-		const filter = tableTempContent.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
+		const filter = campaignsData.filter(entry => Object.values(entry).some(val => typeof val === "string" && val.includes(e.target.value)))
 		setFilteredData(filter)
 	}
 	return (
 	 <div className="py-2 flex flex-wrap w-full h-full">
-		 {isLoading ? <Load /> : ''}
+		 <Load isLoading={isLoading}/>
 		 <div className="px-2 w-full min-h-full">
 			 <div
 			  className="mb-8 rounded-[20px] bg-secondary p-4 lg:p-10 shadow-md md:px-7 xl:px-10 h-full "
@@ -74,15 +72,21 @@ const CampaignsView = () => {
 							 <th scope="col" className="px-6 py-4">#</th>
 							 <th scope="col" className="px-6 py-4">عنوان</th>
 							 <th scope="col" className="px-6 py-4">شروع</th>
+							 <th scope="col" className="px-6 py-4">دسته بندی</th>
+							 <th scope="col" className="px-6 py-4">تایپ</th>
 							 {/*<th scope="col" className="px-6 py-4">بودجه مانده</th>*/}
 							 <th scope="col" className="px-6 py-4">وضعیت</th>
 							 <th scope="col" className="px-6 py-4 w-1/6">عملیات</th>
 						 </tr>
 						 </thead>
 						 <tbody>
-						 {filteredData.map((item) => (
-						  <CampaignsTableCol key={item.uid} id={item.id} num={item.num} title={item.title}
-						                     start={item.createdAt} budget={item.budget} status={item.is_enabled === 1 ? "فعال" : "غیر فعال"}/>
+						 {filteredData.map((item , index) => (
+						  <CampaignsTableCol key={item.uid} id={item.uid} num={index + 1} title={item.title}
+						                     start={item.createdAt}
+						                     // budget={item.budget}
+						   type={item.type}
+						                     status={item.is_enabled}
+						                     category={item.category}/>
 						 ))}
 						 </tbody>
 					 </table>
