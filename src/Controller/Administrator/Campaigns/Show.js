@@ -1,16 +1,18 @@
 import axios from "axios";
 
-async function Show({uid}) {
+async function Show(uid) {
+	let res = {};
 	await axios.get(`campaigns/${uid}`).then(response => {
-		if (response.data.result && response.data.is_logged) {
-			return response.data.data.campaign;
+		if (response.data.result) {
+			res = response.data.data.campaign;
 		} else {
-			return false;
+			res = false;
 		}
 	}).catch(error => {
 		console.log(error.message)
-		return false;
+		res = false;
 	})
+	return res;
 }
 
 export default Show;

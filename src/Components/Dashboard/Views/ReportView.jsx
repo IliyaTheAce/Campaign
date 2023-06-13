@@ -5,93 +5,49 @@ import Show from "../../../Controller/Administrator/Campaigns/Show";
 import Load from "../../Common/Load";
 import {Button} from "@material-tailwind/react";
 import VideoModal from "../Videos/VideoModal";
+import {toast} from "react-toastify";
+import GetEvents from "../../../Controller/Administrator/Campaigns/Events";
 
-const temp = {
-	"uid": "50c9587d3e5daa18b9a6dec1072b92c9c9e11bbf",
-	"title": "33333",
-	"type": "VIDEO",
-	"is_enabled": 1,
-	"category": {
-		"id": 1,
-		"name": "sdvsdv"
-	},
-	"contents": [
-		{
-			"uid": "ef43f34f34g3434g",
-			"format": "video/mp4",
-			"file": "video.mp4",
-			"resource": "https://dsvs.ir/vastchecker/video.mp4",
-			"createdAt": "1402-2-24 10:23:09",
-			"updatedAt": "1402-2-31 13:18:36"
-		},
-		{
-			"uid": "43g34g34g34h33h35h",
-			"format": "video/mp4",
-			"file": "video.mp4",
-			"resource": "https://dsvs.ir/vastchecker/video.mp4",
-			"createdAt": "1402-2-24 10:23:09",
-			"updatedAt": "1402-2-31 13:18:36"
-		}
-	],
-	"budget": 99,
-	"budget_daily": 100,
-	"start_time": "2022-02-12",
-	"end_time": null,
-	"createdAt": "1402-2-24 08:33:53",
-	"updatedAt": "1402-2-31 15:33:58"
-}
 
 const ReportView = () => {
 	const [data, setData] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
 	const campId = useParams().campId;
 	const [showModal, setShowModal] = useState(false);
-	const [modal,setModal] = useState('');
-	
+	const [modal, setModal] = useState('');
+	const [chartData, setChartData] = useState([]);
+	const [event, setEvent] = useState([]);
 	const FetchData = async function () {
 		setIsLoading(true);
-
+		
 		const fetchedData = await Show(campId);
+		const eventData = await GetEvents(campId);
 		if (fetchedData && fetchedData !== false) {
 			setData(fetchedData);
-		}
-		setData(temp)
+			setEvent(eventData)
+			const chart = [
+				{
+					id: "بودجه",
+					label: "Consumed",
+					value: fetchedData.budget,
+				},
+				{
+					id: "مصرف روزانه",
+					label: "Available",
+					value: fetchedData.budget_daily,
+				}
+			];
+			setChartData(chart);
 		setIsLoading(false)
+		}else{
+			toast.error("پاسخی از سرور دریافت نشد." ,{rtl: true})
+		}
 	}
 	
 	useEffect(() => {
 		FetchData();
 	}, []);
 	
-	const tempData = {
-		view: 205,
-		usedBudget: 800000,
-		availableBudget: 1200000,
-		events: [
-			{
-				name: 'نام رویداد تستی',
-				description: 'توضیحاتی درباره رویداد'
-			}, {
-				name: 'نام رویداد تستی',
-				description: 'توضیحاتی درباره رویداد'
-			},
-		]
-	}
-	const chartData = [
-		{
-			id: "بودجه",
-			label: "Consumed",
-			value: data.budget,
-			// color: "hsla(205,87%,22%,0.89)"
-		},
-		{
-			id: "مصرف روزانه",
-			label: "Available",
-			value: data.budget_daily,
-			// color: "hsl(107,70%,50%)"
-		}
-	];
-	console.log(temp)
 	if (isLoading) {
 		return (
 		 <Load isLoading={true}/>
@@ -140,23 +96,6 @@ const ReportView = () => {
 				 
 				 </div>
 			 </div>
-			 {/*<div*/}
-			 {/* className="flex-grow rounded-[20px] place-self-stretch bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 "*/}
-			 {/*>*/}
-			 {/* <div className={'inline-flex items-center mb-8'}>*/}
-			 {/*	 <div*/}
-			 {/*	  className=" flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"*/}
-			 {/*	 >*/}
-			 {/*		 <span className={'material-symbols-outlined'}>visibility</span>*/}
-			 {/*	 </div>*/}
-			 {/*	 <h4 className="text-xl font-semibold text-dark mr-3">*/}
-			 {/*		 بازدید امروز*/}
-			 {/*	 </h4>*/}
-			 {/* </div>*/}
-			 {/* <p className="text-lg md:text-2xl">*/}
-			 {/*	 کمپین امروز به تعداد {tempData.view} بار دیده شده*/}
-			 {/* </p>*/}
-			 {/*</div>*/}
 			 <div
 			  className="flex-grow rounded-[20px] place-self-stretch bg-secondary p-10 shadow-md hover:shadow-lg md:px-7 xl:px-10 h-auto"
 			 >
@@ -171,25 +110,26 @@ const ReportView = () => {
 					 </h4>
 				 </div>
 				 <table className="text-lg md:text-2xl table-auto	 w-full text-center">
-					 <thead><tr className={''}>
-					 <td className={'px-6 py-4'}>#</td>
-					 <td className={'px-6 py-4'}>عملیات</td>
+					 <thead>
+					 <tr className={''}>
+						 <td className={'px-6 py-4'}>#</td>
+						 <td className={'px-6 py-4'}>عملیات</td>
 					 </tr>
 					 </thead>
 					 <tbody className={''}>
 					 {data.contents.map((item, index) =>
-						 <tr className={'py-3'}>
-							 <td className={'px-6 py-2'}>{index + 1}</td>
-							 <td className={'px-6 py-2'}><Button
-						  onClick={() => {
-							  setModal(item.resource)
-							  setShowModal(true)
-						  }}
-						  className="inline-block font-Homa rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
-							 پیش نمایش
-						 </Button>
-							 </td>
-						 </tr>)}
+					  <tr className={'py-3'}>
+						  <td className={'px-6 py-2'}>{index + 1}</td>
+						  <td className={'px-6 py-2'}><Button
+						   onClick={() => {
+							   setModal(item.resource)
+							   setShowModal(true)
+						   }}
+						   className="inline-block font-Homa rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
+							  پیش نمایش
+						  </Button>
+						  </td>
+					  </tr>)}
 					 </tbody>
 				 </table>
 			 </div>
@@ -243,14 +183,28 @@ const ReportView = () => {
 						 رویداد ها
 					 </h4>
 				 </div>
-				 {tempData.events.map((event, index) => (
-				  <div key={index} className={'mb-4'}>
-					  <h2 className={'text-lg md:text-2xl mb-2'}>{event.name}</h2>
-					  <p className="text-sm md:text-l mr-3">
-						  {event.description}
-					  </p>
-				  </div>
-				 ))}
+				 <table className="min-w-full text-right text-sm font-light ">
+					 <thead className="border-b font-medium">
+					 <tr>
+						 <th scope="col" className="px-6 py-4">#</th>
+						 <th scope="col" className="px-6 py-4">عنوان رویداد</th>
+						 <th scope="col" className="px-6 py-4">آی پی</th>
+						 <th scope="col" className="px-6 py-4">هزینه</th>
+					 </tr>
+					 </thead>
+					 <tbody>
+					 {event.map((item, index) => (
+					  <tr className="border-b">
+						  <td className="whitespace-nowrap px-6 py-4 font-medium">{index +1 }</td>
+						  <td className="whitespace-nowrap px-6 py-4">{item.event_name}</td>
+						  <td className="whitespace-nowrap px-6 py-4">{item.ip}</td>
+						  <td className="whitespace-nowrap px-6 py-4">{item.cost}</td>
+					  
+					  </tr>
+					 ))}
+					 </tbody>
+				 </table>
+
 			 
 			 </div>
 			 <VideoModal link={modal} show={showModal} setModal={setShowModal}/>

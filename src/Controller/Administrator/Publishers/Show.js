@@ -1,16 +1,18 @@
 import axios from "axios";
 
-async function Show({uid , reqBody}) {
-	await axios.get(`publishers/${uid}`, reqBody).then(response => {
-		if (response.data.result && response.data.is_logged) {
-			return response.data.data.campaign;
+async function Show(uid) {
+	let res ={};
+	await axios.get(`publishers/${uid}`).then(response => {
+		if (response.data.result) {
+			res =  response.data.data.publisher;
 		} else {
-			return false;
+			res = false;
 		}
 	}).catch(error => {
 		console.log(error.message)
-		return false;
+		res = false;
 	})
+	return  res;
 }
 
 export default Show;

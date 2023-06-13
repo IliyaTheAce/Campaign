@@ -1,14 +1,18 @@
 import axios from "axios";
 import {toast} from "react-toastify";
 
-async function Store({reqBody}) {
+async function Store(reqBody) {
+	let res = {};
 	await axios.post(`campaigns` , reqBody).then(response => {
-		return !!(response.data.result && response.data.is_logged);
+		if(response.data.result && response.data.is_logged){
+			res = response.data.data.campaign.uid;
+		}
 	}).catch(error => {
 		console.log(error.message)
 		toast.error('پاسخی از سرور دریافت نشد' , {rtl: true})
-		return false;
+		res= false;
 	})
+	return res;
 }
 
 export default Store;

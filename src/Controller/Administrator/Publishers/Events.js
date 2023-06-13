@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function GetEvents(uid) {
 	let res = {};
-	await axios.get(`campaigns/${uid}/events`).then(response => {
+	await axios.get(`publishers/${uid}/events`).then(response => {
 		if (response.data.result) {
 			res = response.data.data.events;
 		} else {

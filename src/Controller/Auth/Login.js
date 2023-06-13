@@ -1,20 +1,23 @@
 import axios from "axios";
 
 async function Login(user, pass) {
-	await axios.post('auth/login', {
+	let res = {};
+	await axios.post('/auth/login', {
 		username: user,
 		password: pass
 	}).then(response => {
+		console.log(response);
 		if (response.data.result) {
 			localStorage.setItem('token', response.data.data.token);
-			return true;
+			res = true;
 		} else {
-			return false;
+			res = false;
 		}
 	}).catch(error => {
 		console.log(error.message)
-		return false;
+		res = false;
 	})
+	return res;
 }
 
 export default Login;

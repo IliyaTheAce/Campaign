@@ -1,30 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react';
-import CampaignsTableCol from "./campaignsTableCol";
+import CampaignsTableCol from "../Campaigns/campaignsTableCol";
 import {Link} from "react-router-dom";
 import {Button, Input, Option, Select} from "@material-tailwind/react";
-import GetList from "../../../Controller/Administrator/Campaigns/List";
 import Load from "../../Common/Load";
 import {commonDataContext} from "../../../Utilities/CommonDataProvider";
+import GetList from "../../../Controller/Administrator/Publishers/List";
+import PublishersTableCol from "./PublishersTableCol";
 
 
-const CampaignsView = () => {
-	const [campaignsData, setCampaignsData] = useState([]);
+const PublisherView = () => {
+	const [publisherData, setPublisherData] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const commonData = useContext(commonDataContext);
 	let keywords = '';
-	const [category ,setCategory] = useState('');
 	const FetchingData = async () => {
 		setIsLoading(true)
-		const data =await GetList(category , keywords)
+		const data =await GetList(keywords)
 		if (data && data !== false) {
-			setCampaignsData(data)
+			setPublisherData(data)
 		}
 		setIsLoading(false)
 	}
-	
+
 	useEffect(() => {
 		FetchingData();
-	}, [category]);
+	}, []);
 	
 	return (
 	 <div className="py-2 flex flex-wrap w-full h-full">
@@ -38,10 +37,10 @@ const CampaignsView = () => {
 						 <div
 						  className=" flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-primary"
 						 >
-							 <span className={'material-symbols-outlined'}>campaign</span>
+							 <span className={'material-symbols-outlined'}>podcasts</span>
 						 </div>
 						 <h4 className="text-xl font-semibold text-dark mr-3">
-							 کمپین ها
+پخش کننده ها
 						 </h4>
 					 </div>
 					 <div className="lg:w-1/5">
@@ -51,15 +50,7 @@ const CampaignsView = () => {
 						  variant={'standard'}
 						  className={'text-white'} color={'blue'}
 						  label={'جستجو'}/>
-
-					 </div>
-					 <div className="lg:w-1/5">
 					 
-					 <Select variant="static" label="دسته بندی" onChange={(e) => setCategory(e)}>
-						 <Option key={0} value={''}>همه</Option>
-						 {commonData.categories ? commonData.categories.map((category,index) => {
-							 return <Option key={index+1} value={category.id.toString()}>{category.name}</Option>}) : ''}
-					 </Select>
 					 </div>
 					 <div>
 						 <Button
@@ -68,9 +59,9 @@ const CampaignsView = () => {
 							 بازخوانی
 						 </Button>
 						 <Link
-						  to={'/dashboard/create-campaign'}
+						  to={'/dashboard/publishers/create'}
 						  className="mr-2 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-gray-300 shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-gray-800 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]">
-							 اینجاد کمپین جدید
+							 اینجاد پخش کننده جدید
 						 </Link>
 					 </div>
 				 </div>
@@ -79,23 +70,16 @@ const CampaignsView = () => {
 						 <thead className="border-b font-medium">
 						 <tr>
 							 <th scope="col" className="px-6 py-4">#</th>
-							 <th scope="col" className="px-6 py-4">عنوان</th>
-							 <th scope="col" className="px-6 py-4">شروع</th>
-							 <th scope="col" className="px-6 py-4">دسته بندی</th>
-							 <th scope="col" className="px-6 py-4">تایپ</th>
-							 {/*<th scope="col" className="px-6 py-4">بودجه مانده</th>*/}
-							 <th scope="col" className="px-6 py-4">وضعیت</th>
-							 <th scope="col" className="px-6 py-4 w-1/6">عملیات</th>
+							 <th scope="col" className="px-6 py-4">نام</th>
+							 <th scope="col" className="px-6 py-4">دامنه</th>
+							 <th scope="col" className="px-6 py-4">عملیات</th>
 						 </tr>
 						 </thead>
 						 <tbody>
-						 {campaignsData.map((item , index) => (
-						  <CampaignsTableCol key={item.uid} id={item.uid} num={index + 1} title={item.title}
-						                     start={item.createdAt}
-						                     // budget={item.budget}
-						   type={item.type}
-						                     status={item.is_enabled}
-						                     category={item.category}/>
+						 {publisherData.map((item , index) => (
+						  <PublishersTableCol key={item.uid} id={item.uid} num={index + 1} title={item.title}
+							domain={item.domain}
+						  />
 						 ))}
 						 </tbody>
 					 </table>
@@ -106,4 +90,4 @@ const CampaignsView = () => {
 	);
 };
 
-export default CampaignsView;
+export default PublisherView;

@@ -33,7 +33,7 @@ const Sidebar = () => {
 					 <SidebarLinks link={'./'} linkName={'داشبورد'} iconName={'dashboard'}/>
 					 <SidebarLinks link={'./campaigns'} linkName={'کمپین ها'} iconName={'campaign'}/>
 					 <SidebarLinks link={'./videos'} linkName={'ویدئو ها'} iconName={'video_library'}/>
-					 <SidebarLinks link={'./players'} linkName={'پخش کننده ها'} iconName={'podcasts'}/>
+					 <SidebarLinks link={'./publishers'} linkName={'پخش کننده ها'} iconName={'podcasts'}/>
 				 </ul>
 				 <div className={'fixed mb-5 bottom-0 lg:w-64 w-full'}>
 					 <NavLink

@@ -1,19 +1,26 @@
 import axios from "axios";
 import {toast} from "react-toastify";
+
 // import {Toast} from "react-toastify/dist/components";
 
-async function GetList() {
-	await axios.get('/campaigns').then(response => {
-		if (response.data.result && response.data.is_logged) {
-			return response.data.data.campaigns;
+ const GetList = async(category, keywords) => {
+	 let data = {};
+	await axios.get('/campaigns', {
+		params: {
+			keyword: keywords, category_id: category
+		}
+	}).then(response => {
+		if (response.data.result) {
+			data = response.data.data.campaigns;
 		} else {
-			return false;
+			data = false;
 		}
 	}).catch(error => {
 		console.log(error.message)
-		toast.error('پاسخی از سرور دریافت نشد' , {rtl: true})
-		return false;
+		toast.error('پاسخی از سرور دریافت نشد', {rtl: true})
+		data = false;
 	})
+	 return data;
 }
 
 export default GetList;

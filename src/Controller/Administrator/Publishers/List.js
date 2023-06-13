@@ -1,16 +1,20 @@
 import axios from "axios";
 
-async function GetList() {
-	await axios.get('/publishers').then(response => {
-		if (response.data.result && response.data.is_logged) {
-			return response.data.data.campaigns;
+async function GetList(keywords) {
+	let res = {};
+	await axios.get('/publishers',{
+		params:{keyword:keywords}
+	}).then(response => {
+		if (response.data.result) {
+			res = response.data.data.publishers;
 		} else {
-			return false;
+			res = false;
 		}
 	}).catch(error => {
 		console.log(error.message)
-		return false;
+		res = false;
 	})
+	return res;
 }
 
 export default GetList;

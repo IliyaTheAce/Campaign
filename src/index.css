@@ -16,3 +16,7 @@
 body {
     font-family: "B Homa", sans-serif;
 }
+
+.rtl {
+    direction: rtl;
+}
