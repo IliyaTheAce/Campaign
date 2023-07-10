@@ -7,11 +7,14 @@ import axios from "axios";
 import CommonDataProvider from "./Utilities/CommonDataProvider";
 import SessionProvider from "./Utilities/SessionProvider";
 
-axios.defaults.baseURL = "https://ads-sql.iran.liara.run/api"
+axios.defaults.baseURL = "https://adsapitest.iran.liara.run/api"
 axios.defaults.headers = {
 	"Content-Type": "application/json",
 	"Accept": "application/json",
+	// 'Access-Control-Allow-Origin': "*",
+	// 'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept"
 }
+
 ReactDOM.createRoot(document.getElementById('root')).render(
  <React.StrictMode>
 	 <BrowserRouter basename={'/'}>

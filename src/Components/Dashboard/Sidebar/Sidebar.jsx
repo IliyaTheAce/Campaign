@@ -35,17 +35,17 @@ const Sidebar = () => {
 					 <SidebarLinks link={'./videos'} linkName={'ویدئو ها'} iconName={'video_library'}/>
 					 <SidebarLinks link={'./publishers'} linkName={'پخش کننده ها'} iconName={'podcasts'}/>
 				 </ul>
-				 <div className={'fixed mb-5 bottom-0 lg:w-64 w-full'}>
-					 <NavLink
-					  className="flex items-center ml-6 p-2 rounded-lg text-white hover:bg-gray-700   hover:bg-opacity-50 "
-					  to={'./Account'}>
-                            <span
-                             className="material-symbols-outlined w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                                account_circle
-                            </span>
-						 <span className="mr-3">حساب کاربری</span>
-					 </NavLink>
-				 </div>
+				 {/*<div className={'fixed mb-5 bottom-0 lg:w-64 w-full'}>*/}
+					{/* <NavLink*/}
+					{/*  className="flex items-center ml-6 p-2 rounded-lg text-white hover:bg-gray-700   hover:bg-opacity-50 "*/}
+					{/*  to={'./Account'}>*/}
+                 {/*           <span*/}
+                 {/*            className="material-symbols-outlined w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">*/}
+                 {/*               account_circle*/}
+                 {/*           </span>*/}
+					{/*	 <span className="mr-3">حساب کاربری</span>*/}
+					{/* </NavLink>*/}
+				 {/*</div>*/}
 			 </div>
 		 </aside>
 	 </div>

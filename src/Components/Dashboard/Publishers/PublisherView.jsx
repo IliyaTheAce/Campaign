@@ -78,7 +78,7 @@ const PublisherView = () => {
 						 <tbody>
 						 {publisherData.map((item , index) => (
 						  <PublishersTableCol key={item.uid} id={item.uid} num={index + 1} title={item.title}
-							domain={item.domain}
+							domain={item.domain} fetchData={FetchingData}
 						  />
 						 ))}
 						 </tbody>

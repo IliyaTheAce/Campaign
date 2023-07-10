@@ -1,12 +1,14 @@
 import axios from "axios";
 
-async function Update({uid , reqBody}) {
+async function Update(uid , reqBody) {
+	let res = false;
 	await axios.put(`campaigns/${uid}`, reqBody).then(response => {
-		return !!(response.data.result && response.data.is_logged);
+		res =  !!(response.data.result && response.data.is_logged);
 	}).catch(error => {
 		console.log(error.message)
-		return false;
+		res = false;
 	})
+	return res;
 }
 
 export default Update;
