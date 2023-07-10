@@ -21,6 +21,7 @@ const res = await Delete(props.id);
 			  <Checkbox onChange={e => props.handleSelect(props.id , e.target.checked)}/></td> :
 		  <td className="whitespace-nowrap px-6 py-4 font-medium">{props.num}</td>}
 		 <td className="whitespace-nowrap px-6 py-4">{props.title}</td>
+		 <td className="whitespace-nowrap px-6 py-4">{props.converted === 1 ? 'تبدیل شده' : 'تبدیل نشده'}</td>
 		 <td className="whitespace-nowrap px-6 py-4">{props.format}</td>
 		 <td className="whitespace-nowrap px-6 py-4">
 			 <Button

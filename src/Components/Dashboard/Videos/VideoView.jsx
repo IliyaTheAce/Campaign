@@ -22,10 +22,6 @@ const VideoView = () => {
         FetchData();
     }, [null]);
 
-    const HandleCheck = ({uid, checked}) => {
-
-    }
-
     return (
         <div className="py-2 flex flex-wrap w-full h-full">
             <Load isLoading={isLoading}/>
@@ -72,6 +68,7 @@ const VideoView = () => {
                             <tr>
                                 <th scope="col" className="px-6 py-4">#</th>
                                 <th scope="col" className="px-6 py-4">عنوان</th>
+                                <th scope="col" className="px-6 py-4">تبدیل شده</th>
                                 <th scope="col" className="px-6 py-4">تایپ</th>
                                 <th scope="col" className="px-6 py-4 w-1/6">عملیات</th>
                             </tr>
@@ -79,6 +76,7 @@ const VideoView = () => {
                             <tbody>
                             {data ? data.map((item, index) => (
                                 <VideoTableCol key={index + 1} id={item.uid} num={index + 1} title={item.title}
+                                               converted ={item.status}
                                                videoLink={item.resource} format={item.format} hasDeleteButton={true}
                                                fetchData ={FetchData}
                                 />
